@@ -98,7 +98,7 @@ app.post('/sendInvitation', (req, res) => {
   firestore.addInvitation(fromEmail, toEmail, (result) => {
     if(result == 'success') {
       console.log("Saved invitation successfully.");
-      return res.send({success: true,status: 1});
+      return res.send({success: true});
     } else {
       console.log(result);
       return res.status(500).json({ error: result });
