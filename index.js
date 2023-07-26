@@ -45,8 +45,8 @@ app.get('/deeplink', (req, res) => {
 
     const response = JSON.parse(xhttp.responseText);
 
-    return res.send(response)
-  //return res.send('Testing.')
+    console.log(response);
+  return res.send('Testing.')
 })
 
 app.post('/send-mail', (req, res) => {
