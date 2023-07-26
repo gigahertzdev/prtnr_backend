@@ -60,14 +60,24 @@ app.get('/deeplink', (req, res) => {
 
 
 app.get(`/checkdeep`, async function (req, res) {
-	const url =
-		'https://jsonplaceholder.typicode.com/todos/1';
-	const options = {
+//	const url =
+	//	'https://jsonplaceholder.typicode.com/todos/1';
+    const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
+    const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
+  
+    const options = {
 		method: 'GET',
-		// headers: {
-		// 	'X-RapidAPI-Host': 'famous-quotes4.p.rapidapi.com',
+		 headers: {
+		 	'Content-Type': 'application/json',
 		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
-		// }
+    
+    body: JSON.stringify({
+      "dynamicLinkInfo": {
+        "domainUriPrefix": "https://prtnr.page.link",
+        "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
+      }
+    })
+		 }
 	};
 	// promise syntax
 /*	fetch(url, options)
