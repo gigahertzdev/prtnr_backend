@@ -55,6 +55,39 @@ app.get('/deeplink', (req, res) => {
   return res.send('Testing.......')
 })
 
+
+
+
+
+app.get(`/checkdeep`, async function (req, res) {
+	const url =
+		'https://jsonplaceholder.typicode.com/todos/1';
+	const options = {
+		method: 'GET',
+		// headers: {
+		// 	'X-RapidAPI-Host': 'famous-quotes4.p.rapidapi.com',
+		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
+		// }
+	};
+	// promise syntax
+/*	fetch(url, options)
+		.then(res => res.json())
+		.then(json => console.log(json))
+		.catch(err => console.error('error:' + err));*/
+	try {
+		let response = await fetch(url, options);
+		response = await response.json();
+		res.status(200).json(response);
+    return res;
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({msg: `Internal Server Error....`});
+	}
+ // return res.send('Testing.......')
+
+});
+
+
 app.post('/send-mail', (req, res) => {
   const {to} = req.body;
   const verificationCode = Math.floor(Math.random() * 90000) + 10000;
