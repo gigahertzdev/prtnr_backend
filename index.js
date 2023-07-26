@@ -45,12 +45,12 @@ app.get('/deeplink', (req, res) => {
 
     const response = JSON.parse(xhttp.responseText);
 
-    console.log(response);
+    console.log(response);*/
 
     fetch('https://jsonplaceholder.typicode.com/todos/1')
   .then(response => response.json())
   .then(data => console.log(data));
-*/
+
   return res.send('Testing.')
 })
 
