@@ -35,7 +35,7 @@ app.get('/test', (req, res) => {
 
 app.get('/deeplink', (req, res) => {
 
-  const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
+  /*const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
   const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
 
   const xhttp = new XMLHttpRequest();
@@ -45,7 +45,12 @@ app.get('/deeplink', (req, res) => {
 
     const response = JSON.parse(xhttp.responseText);
 
-    console.log(response);
+    console.log(response);*/
+
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(data => console.log(data));
+
   return res.send('Testing.')
 })
 
