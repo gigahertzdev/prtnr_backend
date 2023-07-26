@@ -70,7 +70,7 @@ app.get(`/checkdeep`, async function (req, res) {
 		 headers: {
 		 	'Content-Type': 'application/json',
 		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
-    'Accept': 'application/json, text/plain, */*',
+//    'Accept': 'application/json, text/plain, */*',
     
     body: JSON.stringify({
       "dynamicLinkInfo": {
@@ -87,7 +87,7 @@ app.get(`/checkdeep`, async function (req, res) {
 		.catch(err => console.error('error:' + err));*/
 	try {
 		let response = await fetch(url, options);
-		response = await response.text;
+		response = await response.json();
 		res.status(200).json({"data":response});
     return res;
 	} catch (err) {
