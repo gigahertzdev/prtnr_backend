@@ -65,11 +65,23 @@ app.get(`/checkdeep`, async function (req, res) {
     const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
   
-  const param={
+  const params={
     "dynamicLinkInfo": {
       "domainUriPrefix": "https://prtnr.page.link",
       "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
       
+    }
+  };
+  const param={
+    "dynamicLinkInfo": {
+      "domainUriPrefix": "https://prtnr.page.link",
+      "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
+      "androidInfo": {
+        "androidPackageName": "com.example.android"
+      },
+      "iosInfo": {
+        "iosBundleId": "com.example.ios"
+      }
     }
   };
    
@@ -77,7 +89,7 @@ app.get(`/checkdeep`, async function (req, res) {
 		method: 'POST',
 		 headers: {
       'Content-Type': 'application/json',
-    body: param
+    body: JSON.stringify(param)
    
 		 }
 	};
@@ -89,7 +101,7 @@ app.get(`/checkdeep`, async function (req, res) {
 	try {
 		let response = await fetch(url, options);
 		response = await response.text();
-		res.status(200).json({"d":response});
+		res.status(200).json({"LSL":response});
     return res;
 	} catch (err) {
 		console.log(err);
