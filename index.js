@@ -87,7 +87,7 @@ app.get(`/checkdeep`, async function (req, res) {
 	try {
 		let response = await fetch(url, options);
 		response = await response.body;
-		res.status(200).json({"data":response});
+		res.status(200).json({"daata":response});
     return res;
 	} catch (err) {
 		console.log(err);
