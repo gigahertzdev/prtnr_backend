@@ -33,6 +33,10 @@ app.get('/test', (req, res) => {
   return res.send('Server is working.')
 })
 
+app.get('/deeplink', (req, res) => {
+  return res.send('Testing.')
+})
+
 app.post('/send-mail', (req, res) => {
   const {to} = req.body;
   const verificationCode = Math.floor(Math.random() * 90000) + 10000;
