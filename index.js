@@ -70,13 +70,7 @@ app.get(`/checkdeep`, async function (req, res) {
     const options = {
 		method: 'POST',
 		 headers: {
-      'Accept': 'application/json',
       'Content-Type': 'application/json',
-//       "Content-Type": "application/x-www-form-urlencoded",
-
-		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
-//    'Accept': 'application/json, text/plain, */*',
-    
     body: JSON.stringify({
       "dynamicLinkInfo": {
         "domainUriPrefix": "https://prtnr.page.link",
@@ -94,7 +88,7 @@ app.get(`/checkdeep`, async function (req, res) {
 	try {
 		let response = await fetch(url, options);
 		response = await response.text();
-		res.status(200).json({"data":response});
+		res.status(200).json({"dat":response});
     return res;
 	} catch (err) {
 		console.log(err);
