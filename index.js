@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer'
+import fetch from 'node-fetch';
 const app = express()
 const port = 3030
 
