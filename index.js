@@ -66,29 +66,23 @@ app.get(`/checkdeep`, async function (req, res) {
     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
   
 
-    const urlencoded = new URLSearchParams({
-      "dynamicLinkInfo": {
-        "domainUriPrefix": "https://prtnr.page.link",
-        "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
-      }
-    });
-
+   
     const options = {
 		method: 'POST',
 		 headers: {
-//		 	'Content-Type': 'application/json',
-       "Content-Type": "application/x-www-form-urlencoded",
+		 	'Content-Type': 'application/json',
+//       "Content-Type": "application/x-www-form-urlencoded",
 
 		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
 //    'Accept': 'application/json, text/plain, */*',
     
-   /* body: JSON.stringify({
+    body: JSON.stringify({
       "dynamicLinkInfo": {
         "domainUriPrefix": "https://prtnr.page.link",
         "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
       }
-    })*/
-    body:urlencoded
+    })
+   
 		 }
 	};
 	// promise syntax
@@ -99,7 +93,7 @@ app.get(`/checkdeep`, async function (req, res) {
 	try {
 		let response = await fetch(url, options);
 		response = await response.json();
-		res.status(200).json({"data":response});
+		res.status(200).json({"daata":response});
     return res;
 	} catch (err) {
 		console.log(err);
