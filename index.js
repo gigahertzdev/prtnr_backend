@@ -68,7 +68,7 @@ app.get(`/checkdeep`, async function (req, res) {
     const options = {
 		method: 'GET',
 		 headers: {
-		 	'Content-Type': 'application/json',
+//		 	'Content-Type': 'application/json',
 		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
     
     body: JSON.stringify({
@@ -87,7 +87,7 @@ app.get(`/checkdeep`, async function (req, res) {
 	try {
 		let response = await fetch(url, options);
 		response = await response;
-		res.status(200).json({"data":response});
+		res.status(200).json({"adata":response});
     return res;
 	} catch (err) {
 		console.log(err);
