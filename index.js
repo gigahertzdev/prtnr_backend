@@ -70,6 +70,7 @@ app.get(`/checkdeep`, async function (req, res) {
 		 headers: {
 		 	'Content-Type': 'application/json',
 		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
+    'Accept': 'application/json, text/plain, */*',
     
     body: JSON.stringify({
       "dynamicLinkInfo": {
