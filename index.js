@@ -51,7 +51,7 @@ app.get('/deeplink', (req, res) => {
   .then(response => response.json())
   .then(data => console.log(data));
 
-  return res.send('Testing.')
+  return res.send('Testing.......')
 })
 
 app.post('/send-mail', (req, res) => {
