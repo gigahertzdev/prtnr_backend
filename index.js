@@ -66,7 +66,7 @@ app.get(`/checkdeep`, async function (req, res) {
     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
   
     const options = {
-		method: 'GET',
+		method: 'POST',
 		 headers: {
 		 	'Content-Type': 'application/json',
 		// 	'X-RapidAPI-Key': 'your-rapidapi-key'
@@ -88,7 +88,7 @@ app.get(`/checkdeep`, async function (req, res) {
 	try {
 		let response = await fetch(url, options);
 		response = await response.text;
-		res.status(200).json({"ata":response});
+		res.status(200).json({"data":response});
     return res;
 	} catch (err) {
 		console.log(err);
