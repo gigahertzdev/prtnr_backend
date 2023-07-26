@@ -86,12 +86,12 @@ app.get(`/checkdeep`, async function (req, res) {
 		.catch(err => console.error('error:' + err));*/
 	try {
 		let response = await fetch(url, options);
-		response = await response.json();
-		res.status(200).json(response);
+		response = await response.statusText;
+		res.status(200).json({"data":response});
     return res;
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({msg: `Internal Server Error....`});
+		res.status(500).json({msg: `Internal Server Error`});
 	}
  // return res.send('Testing.......')
 
