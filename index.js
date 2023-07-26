@@ -30,7 +30,7 @@ let transporter = nodemailer.createTransport({
 });
 
 app.get('/test', (req, res) => {
-  return res.send('Server is working.')
+  return res.send('Server is working..')
 })
 
 app.get('/deeplink', (req, res) => {
