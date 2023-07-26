@@ -34,7 +34,19 @@ app.get('/test', (req, res) => {
 })
 
 app.get('/deeplink', (req, res) => {
-  return res.send('Testing.')
+
+  const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
+  const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
+
+  const xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", url, false);
+    xhttp.send();
+
+    const response = JSON.parse(xhttp.responseText);
+
+    return res.send(response)
+  //return res.send('Testing.')
 })
 
 app.post('/send-mail', (req, res) => {
