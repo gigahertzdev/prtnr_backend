@@ -89,9 +89,10 @@ app.get(`/checkdeep`, async function (req, res) {
 		method: 'POST',
 		 headers: {
       'Content-Type': 'application/json',
-    body: JSON.stringify(param)
+    
    
-		 }
+		 },
+     body: JSON.stringify(param)
 	};
 	// promise syntax
 /*	fetch(url, options)
