@@ -31,7 +31,7 @@ let transporter = nodemailer.createTransport({
 });
 
 app.get('/test', (req, res) => {
-  return res.send('Server is working..'+process.env.WEB_API_KEY+" ???"+process.env.MAIL_USERNAME)
+  return res.send('Server is working..')
 })
 
 app.get('/deeplink', (req, res) => {
@@ -157,7 +157,7 @@ app.post('/sendInvitation', (req, res) => {
   firestore.addInvitation(fromEmail, toEmail, async  (result) => {
     if(result == 'success') {
       /* After Successfull data Addition send deep link also */
-     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
+     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + process.env.WEB_API_KEY;
         
         const param={
           "dynamicLinkInfo": {
