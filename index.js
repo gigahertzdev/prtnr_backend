@@ -157,7 +157,7 @@ app.post('/sendInvitation', (req, res) => {
   firestore.addInvitation(fromEmail, toEmail, async  (result) => {
     if(result == 'success') {
       /* After Successfull data Addition send deep link also */
-/*        const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
+        const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
         const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
         
         const param={
@@ -189,10 +189,10 @@ app.post('/sendInvitation', (req, res) => {
           res.status(500).json({msg: `Internal Server Error`,success: false});
         }
 
-*/
 
-      console.log("Saved invitation successfully.");
-      return res.send({success: true});
+
+   //   console.log("Saved invitation successfully.");
+ //     return res.send({success: true});
     } else {
       console.log(result);
       return res.status(500).json({ error: result });
