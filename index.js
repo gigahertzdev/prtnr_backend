@@ -157,8 +157,7 @@ app.post('/sendInvitation', (req, res) => {
   firestore.addInvitation(fromEmail, toEmail, async  (result) => {
     if(result == 'success') {
       /* After Successfull data Addition send deep link also */
-     //   const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
-        const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
+     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
         
         const param={
           "dynamicLinkInfo": {
