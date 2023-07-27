@@ -31,7 +31,7 @@ let transporter = nodemailer.createTransport({
 });
 
 app.get('/test', (req, res) => {
-  return res.send('Server is working..')
+  return res.send('Server is working..'+process.env.WEB_API_KEY)
 })
 
 app.get('/deeplink', (req, res) => {
