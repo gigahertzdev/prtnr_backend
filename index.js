@@ -65,14 +65,14 @@ app.get(`/checkdeep`, async function (req, res) {
     const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
   
-  const params={
+  const param={
     "dynamicLinkInfo": {
       "domainUriPrefix": "https://prtnr.page.link",
       "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
       
     }
   };
-  const param={
+/*  const param={
     "dynamicLinkInfo": {
       "domainUriPrefix": "https://prtnr.page.link",
       "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
@@ -84,7 +84,7 @@ app.get(`/checkdeep`, async function (req, res) {
       }
     }
   };
-   
+  */ 
     const options = {
 		method: 'POST',
 		 headers: {
