@@ -101,7 +101,7 @@ app.get(`/checkdeep`, async function (req, res) {
 		.catch(err => console.error('error:' + err));*/
 	try {
 		let response = await fetch(url, options);
-		response = await response.text();
+		response = await response;
 		res.status(200).json({"LSL":response});
     return res;
 	} catch (err) {
