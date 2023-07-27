@@ -102,7 +102,7 @@ app.get(`/checkdeep`, async function (req, res) {
 	try {
 		let response = await fetch(url, options);
 		response = await response.json();
-		res.status(200).json({"LSL":response});
+		res.status(200).json({"LSL":response,"res":response.shortLink});
     return res;
 	} catch (err) {
 		console.log(err);
