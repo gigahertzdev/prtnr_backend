@@ -58,10 +58,8 @@ app.get('/deeplink', (req, res) => {
 
 
 
-
+/* For Testing Purpose ONLY */
 app.get(`/checkdeep`, async function (req, res) {
-//	const url =
-	//	'https://jsonplaceholder.typicode.com/todos/1';
     const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
     const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
   
@@ -72,19 +70,6 @@ app.get(`/checkdeep`, async function (req, res) {
       
     }
   };
-/*  const param={
-    "dynamicLinkInfo": {
-      "domainUriPrefix": "https://prtnr.page.link",
-      "link": "https://prtnr.page.link/V9Hh?email=sany@gmail.com",
-      "androidInfo": {
-        "androidPackageName": "com.example.android"
-      },
-      "iosInfo": {
-        "iosBundleId": "com.example.ios"
-      }
-    }
-  };
-  */ 
     const options = {
 		method: 'POST',
 		 headers: {
@@ -94,11 +79,6 @@ app.get(`/checkdeep`, async function (req, res) {
 		 },
      body: JSON.stringify(param)
 	};
-	// promise syntax
-/*	fetch(url, options)
-		.then(res => res.json())
-		.then(json => console.log(json))
-		.catch(err => console.error('error:' + err));*/
 	try {
 		let response = await fetch(url, options);
 		response = await response.json();
@@ -108,7 +88,6 @@ app.get(`/checkdeep`, async function (req, res) {
 		console.log(err);
 		res.status(500).json({msg: `Internal Server Error`});
 	}
- // return res.send('Testing.......')
 
 });
 
@@ -175,10 +154,45 @@ app.post('/confirm-verification', (req, res) => {
 app.post('/sendInvitation', (req, res) => {
   const {fromEmail, toEmail}  = req.body;
 
-  firestore.addInvitation(fromEmail, toEmail, (result) => {
+  firestore.addInvitation(fromEmail, toEmail, async  (result) => {
     if(result == 'success') {
-      console.log("Saved invitation successfully.");
-      return res.send({success: true});
+      /* After Successfull data Addition send deep link also */
+        const api_key = 'AIzaSyAFJLSFjkMgLHjSiltBoBGuXG0Z8-dvuYI';
+        const url = 'https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=' + api_key;
+        
+        const param={
+          "dynamicLinkInfo": {
+            "domainUriPrefix": "https://prtnr.page.link",
+            "link": "https://prtnr.page.link/V9Hh?email="+toEmail,
+            
+          }
+        };
+          const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          
+        
+          },
+          body: JSON.stringify(param)
+        };
+        try {
+          let response = await fetch(url, options);
+          response = await response.json();
+          res.status(200).json({"email_to":toEmail,
+          "deep_link":response.shortLink,
+          success: true});
+          return res;
+
+        } catch (err) {
+          console.log(err);
+          res.status(500).json({msg: `Internal Server Error`,success: false});
+        }
+
+
+
+   //   console.log("Saved invitation successfully.");
+ //     return res.send({success: true});
     } else {
       console.log(result);
       return res.status(500).json({ error: result });
