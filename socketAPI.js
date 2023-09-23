@@ -8,13 +8,18 @@ export default function (server) {
         console.log('A client connected');
  
         socket.on('chat message', (message) => {
-          console.log('Received message:', message);
+          console.log('Received message:', message.data);
           io.emit('chat message', message); // Broadcast the message to all connected clients
         });
  
         socket.on('disconnect', () => {
           console.log('A client disconnected');
         });
+
+        socket.on('determine3choices', (message) => {
+
+        })
+
       });
 
     return io;
