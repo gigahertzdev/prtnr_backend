@@ -4,13 +4,18 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer'
 import fetch from 'node-fetch';
+import http from "http";
+
 const app = express()
+const server = http.createServer(app);
 const port = 3030
 
 dotenv.config();
 
 import firestore from './src/firebase.js'
 
+import io from './socketAPI.js'
+io(server);
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -201,6 +206,7 @@ app.post('/sendInvitation', (req, res) => {
 
 // app.use('/', route);
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Express backend is listening at http://localost:${port}....`)
 })
+

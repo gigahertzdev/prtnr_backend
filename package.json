@@ -19,7 +19,8 @@
     "firebase": "^9.23.0",
     "firebase-admin": "^11.9.0",
     "node-fetch": "^3.3.2",
-    "nodemailer": "^6.9.3"
+    "nodemailer": "^6.9.3",
+    "socket.io": "^4.7.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
