@@ -1,8 +1,8 @@
-const socketIO = require('socket.io');
+import { Server } from "socket.io";
 
 export default function (server) {
 
-    const io = socketIO(server);
+    const io = new Server(server);
 
     io.on('connection', (socket) => {
         console.log('A client connected');
