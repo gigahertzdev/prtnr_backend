@@ -85,13 +85,7 @@ app.post("/sendInvitation", (req, res) => {
           link: "https://prtnr.page.link/V9Hh?email=" + to,
         },
       };
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(param),
-      };
+
       try {
         let response = await axios.post(url, param);
 
