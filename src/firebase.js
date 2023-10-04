@@ -10,9 +10,10 @@ import {
 } from "firebase/firestore";
 
 const addVerificationData = async (userData, callback) => {
+  console.log(userData);
   try {
     const docRef = await addDoc(collection(db, "Verification"), {
-      phone: userData.phone,
+      email: userData.email,
       verification_code: userData.verifCode,
     });
     userData.userRefId = docRef.id;
@@ -22,13 +23,13 @@ const addVerificationData = async (userData, callback) => {
   }
 };
 
-const getRegisteredCode = async (phone, callback) => {
+const getRegisteredCode = async (emailId, callback) => {
   let user = { data: "false" };
   try {
     const userRef = collection(db, "Verification");
-    const q = query(userRef, where("phone", "==", phone));
+    const q = query(userRef, where("email", "==", emailId));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(async (document) => {
+    querySnapshot.forEach((document) => {
       user = document.data();
       user["data"] = "true";
     });
@@ -38,10 +39,10 @@ const getRegisteredCode = async (phone, callback) => {
   }
 };
 
-const formatCollection = async (phone, callback) => {
+const formatCollection = async (emailId, callback) => {
   try {
     const userRef = collection(db, "Verification");
-    const q = query(userRef, where("phone", "==", phone));
+    const q = query(userRef, where("email", "==", emailId));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (document) => {
       console.log(document.id);
@@ -56,8 +57,8 @@ const formatCollection = async (phone, callback) => {
 const addInvitation = async (fromEmail, toEmail, callback) => {
   try {
     const docRef = await addDoc(collection(db, "Invitations"), {
-      fromNumber: fromEmail,
-      toNumber: toEmail,
+      fromEmail: fromEmail,
+      toEmail: toEmail,
     });
     callback("success");
   } catch (error) {
