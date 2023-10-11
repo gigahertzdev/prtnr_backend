@@ -2,14 +2,18 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import nodemailer from "nodemailer";
 import twilio from "twilio";
 import axios from "axios";
+import io from "./socketAPI.js";
+import http from "http";
 
 const app = express();
 const port = 3030;
+const server = http.createServer(app);
 
 dotenv.config();
+
+io(server);
 
 import firestore from "./src/firebase.js";
 
