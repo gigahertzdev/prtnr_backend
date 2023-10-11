@@ -23,18 +23,6 @@ app.listen(port, () => {
   //console.log(`Express backend is listening at http://localost:${port}....`)
 });
 
-let transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    type: "OAuth2",
-    user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD,
-    clientId: process.env.OAUTH_CLIENTID,
-    clientSecret: process.env.OAUTH_CLIENT_SECRET,
-    refreshToken: process.env.OAUTH_REFRESH_TOKEN,
-  },
-});
-
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
@@ -69,9 +57,18 @@ route.post("/send-mail", (req, res) => {
     });
 });
 
+app.get("/enableBio/:userId", (req, res) => {
+  try {
+    const { userId } = req.params;
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false });
+  }
+});
+
 app.post("/sendInvitation", (req, res) => {
   const { from, to } = req.body;
-
+  console.log(from, to);
   firestore.addInvitation(from, to, async (result) => {
     if (result == "success") {
       /* After Successfull data Addition send deep link also */
