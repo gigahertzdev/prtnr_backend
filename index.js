@@ -71,9 +71,9 @@ app.get("/enableBio/:userId", (req, res) => {
 });
 
 app.post("/sendInvitation", (req, res) => {
-  const { fromNumber, toNumber } = req.body;
-  console.log(from, toNumber);
-  firestore.addInvitation(fromNumber, toNumber,  (result) => {
+  const { from, to } = req.body;
+  console.log(from, to);
+  firestore.addInvitation(from, to, async (result) => {
     if (result == "success") {
       /* After Successfull data Addition send deep link also */
       const url =
@@ -83,32 +83,32 @@ app.post("/sendInvitation", (req, res) => {
       const param = {
         dynamicLinkInfo: {
           domainUriPrefix: "https://prtnr.page.link",
-          link: "https://prtnr.page.link/V9Hh?email=" + toNumber,
+          link: "https://prtnr.page.link/V9Hh?email=" + to,
         },
       };
 
       try {
-//        let response = await axios.post(url, param);
+        let response = await axios.post(url, param);
 
-  /*      client.messages.create({
+        client.messages.create({
           body: `Hey! Your partner sends you an invitation link: ${response.data.shortLink}`,
           from: process.env.TWILIO_PHONE_NUMBER,
           to: to,
         });
-*/
+
         res.status(200).json({
-          toSms: toNumber,
-          deep_link: "s",//response.data.shortLink,
+          toSms: to,
+          deep_link: response.data.shortLink,
           success: true,
         });
-    //    return res;
+        return res;
       } catch (err) {
         console.log(err);
         res.status(500).json({ msg: `Internal Server Error`, success: false });
       }
     } else {
       console.log(result);
-       res.status(500).json({ error: result });
+      return res.status(500).json({ error: result });
     }
   });
 });
