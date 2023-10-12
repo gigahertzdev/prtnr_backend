@@ -98,7 +98,7 @@ app.post("/sendInvitation", (req, res) => {
 */
         res.status(200).json({
           toSms: toNumber,
-          deep_link: result,//response.data.shortLink,
+          deep_link: "s",//response.data.shortLink,
           success: true,
         });
     //    return res;
