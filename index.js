@@ -90,12 +90,12 @@ app.post("/sendInvitation", (req, res) => {
       try {
         let response = await axios.post(url, param);
 
-        client.messages.create({
+  /*      client.messages.create({
           body: `Hey! Your partner sends you an invitation link: ${response.data.shortLink}`,
           from: process.env.TWILIO_PHONE_NUMBER,
           to: to,
         });
-
+*/
         res.status(200).json({
           toSms: to,
           deep_link: response.data.shortLink,
