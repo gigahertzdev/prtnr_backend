@@ -108,7 +108,7 @@ app.post("/sendInvitation", (req, res) => {
       }
     } else {
       console.log(result);
-      return res.status(500).json({ error: result });
+       res.status(500).json({ error: result });
     }
   });
 });
