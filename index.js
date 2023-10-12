@@ -101,7 +101,7 @@ app.post("/sendInvitation", (req, res) => {
           deep_link: response.data.shortLink,
           success: true,
         });
-        return res;
+    //    return res;
       } catch (err) {
         console.log(err);
         res.status(500).json({ msg: `Internal Server Error`, success: false });
