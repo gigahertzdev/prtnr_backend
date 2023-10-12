@@ -73,7 +73,7 @@ app.get("/enableBio/:userId", (req, res) => {
 app.post("/sendInvitation", (req, res) => {
   const { from, to } = req.body;
   console.log(from, to);
-  firestore.addInvitation(from, to, async (result) => {
+  firestore.addInvitation(from, to,  (result) => {
     if (result == "success") {
       /* After Successfull data Addition send deep link also */
       const url =
@@ -88,7 +88,7 @@ app.post("/sendInvitation", (req, res) => {
       };
 
       try {
-        let response = await axios.post(url, param);
+//        let response = await axios.post(url, param);
 
   /*      client.messages.create({
           body: `Hey! Your partner sends you an invitation link: ${response.data.shortLink}`,
@@ -98,7 +98,7 @@ app.post("/sendInvitation", (req, res) => {
 */
         res.status(200).json({
           toSms: to,
-          deep_link: response.data.shortLink,
+          deep_link: "",//response.data.shortLink,
           success: true,
         });
     //    return res;
