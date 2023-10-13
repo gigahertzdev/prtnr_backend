@@ -71,9 +71,9 @@ app.get("/enableBio/:userId", (req, res) => {
 });
 
 app.post("/sendInvitation", (req, res) => {
-  const { from, to } = req.body;
+  const { from, to, userId } = req.body;
   console.log(from, to);
-  firestore.addInvitation(from, to, async (result) => {
+  firestore.addInvitation(from, to, userId, async (result) => {
     if (result == "success") {
       /* After Successfull data Addition send deep link also */
       const url =
@@ -83,7 +83,7 @@ app.post("/sendInvitation", (req, res) => {
       const param = {
         dynamicLinkInfo: {
           domainUriPrefix: "https://prtnr.page.link",
-          link: "https://prtnr.page.link/V9Hh?email=" + to,
+          link: "https://prtnr.page.link/V9Hh?user_id=" + userId,
         },
       };
 

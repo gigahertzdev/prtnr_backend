@@ -53,11 +53,12 @@ const formatCollection = async (phone, callback) => {
   }
 };
 
-const addInvitation = async (fromEmail, toEmail, callback) => {
+const addInvitation = async (fromEmail, toEmail, userId, callback) => {
   try {
     const docRef = await addDoc(collection(db, "Invitations"), {
       fromNumber: fromEmail,
       toNumber: toEmail,
+      userId: userId,
     });
     callback("success");
   } catch (error) {
